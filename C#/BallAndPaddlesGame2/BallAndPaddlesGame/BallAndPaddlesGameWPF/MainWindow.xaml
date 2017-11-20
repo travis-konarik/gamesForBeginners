@@ -1,0 +1,70 @@
+﻿<Window x:Class="BallAndPaddlesGameWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BallAndPaddlesGameWPF"
+        xmlns:controllers="clr-namespace:BallAndPaddlesGameWPF.Controllers"
+        mc:Ignorable="d"
+        Title="Ball And Paddles" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <controllers:PlayAreaActions
+            x:Key="PlayAreaActions">
+            <controllers:PlayAreaActions.BorderWidth>5</controllers:PlayAreaActions.BorderWidth>
+            <controllers:PlayAreaActions.Width>500</controllers:PlayAreaActions.Width>
+            <controllers:PlayAreaActions.Height>500</controllers:PlayAreaActions.Height>
+        </controllers:PlayAreaActions>
+        <controllers:PaddleActions x:Key="LeftPaddle">
+            <controllers:PaddleActions.Location>Left</controllers:PaddleActions.Location>
+            <controllers:PaddleActions.Y1>200</controllers:PaddleActions.Y1>
+            <controllers:PaddleActions.Length>100</controllers:PaddleActions.Length>
+            <controllers:PaddleActions.DistanceFromSide>25</controllers:PaddleActions.DistanceFromSide>
+            <controllers:PaddleActions.PlayAreaWidth>500</controllers:PaddleActions.PlayAreaWidth>
+        </controllers:PaddleActions>
+        <controllers:PaddleActions x:Key="RightPaddle">
+            <controllers:PaddleActions.Location>Right</controllers:PaddleActions.Location>
+            <controllers:PaddleActions.Y1>200</controllers:PaddleActions.Y1>
+            <controllers:PaddleActions.Length>100</controllers:PaddleActions.Length>
+            <controllers:PaddleActions.DistanceFromSide>25</controllers:PaddleActions.DistanceFromSide>
+            <controllers:PaddleActions.PlayAreaWidth>500</controllers:PaddleActions.PlayAreaWidth>
+        </controllers:PaddleActions>
+        <controllers:BallActions x:Key="Ball">
+            <controllers:BallActions.Direction>LeftUp</controllers:BallActions.Direction>
+            <controllers:BallActions.Radius>15</controllers:BallActions.Radius>
+            <controllers:BallActions.X>250</controllers:BallActions.X>
+            <controllers:BallActions.Y>250</controllers:BallActions.Y>
+        </controllers:BallActions>
+    </Window.Resources>
+    <Canvas Width="{Binding Width, Source={StaticResource PlayAreaActions}, Mode=OneWay}"
+            Height="{Binding Height, Source={StaticResource PlayAreaActions}, Mode=OneWay}">
+        <Rectangle
+            x:Name="Background"
+            Width="{Binding Width, Source={StaticResource PlayAreaActions}, Mode=OneWay}"
+            Height="{Binding Height, Source={StaticResource PlayAreaActions}, Mode=OneWay}"
+            Stroke="Black"
+            StrokeThickness="{Binding BorderWidth, Source={StaticResource PlayAreaActions}, Mode=OneWay}" />
+        <Line
+            x:Name="LeftPaddle"
+            X1="{Binding X, Source={StaticResource LeftPaddle}, Mode=OneWay}"
+            Y1="{Binding Y1, Source={StaticResource LeftPaddle}, Mode=OneWay}"
+            X2="{Binding X, Source={StaticResource LeftPaddle}, Mode=OneWay}"
+            Y2="{Binding Y2, Source={StaticResource LeftPaddle}, Mode=OneWay}"
+            Stroke="Black"
+            StrokeThickness="5"/>
+        <Line
+            x:Name="RightPaddle"
+            X1="{Binding X, Source={StaticResource RightPaddle}, Mode=OneWay}"
+            Y1="{Binding Y1, Source={StaticResource RightPaddle}, Mode=OneWay}"
+            X2="{Binding X, Source={StaticResource RightPaddle}, Mode=OneWay}"
+            Y2="{Binding Y2, Source={StaticResource RightPaddle}, Mode=OneWay}"
+            Stroke="Black"
+            StrokeThickness="5"/>
+        <Ellipse
+            x:Name="Ball"
+            Height="{Binding Radius, Source={StaticResource Ball}, Mode=OneWay}" 
+            Width="{Binding Radius, Source={StaticResource Ball}, Mode=OneWay}"
+            Fill="Black"
+            Canvas.Top="{Binding X, Source={StaticResource Ball}, Mode=OneWay}"
+            Canvas.Left="{Binding Y, Source={StaticResource Ball}, Mode=OneWay}"/>
+    </Canvas>
+</Window>

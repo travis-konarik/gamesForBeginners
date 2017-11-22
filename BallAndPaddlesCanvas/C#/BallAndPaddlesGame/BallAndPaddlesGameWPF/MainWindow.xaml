@@ -1,0 +1,51 @@
+﻿<Window x:Class="BallAndPaddlesGameWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BallAndPaddlesGameWPF"
+        xmlns:controllers="clr-namespace:BallAndPaddlesGameWPF.Controllers"
+        mc:Ignorable="d"
+        Title="Ball And Paddles" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <controllers:MainWindowController x:Key="Controller"/>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding LeftPaddle.MovePaddleUp, Source={StaticResource Controller}}" CommandParameter="{Binding LeftPaddle, Source={StaticResource Controller}}" Key="W"/>
+        <KeyBinding Command="{Binding RightPaddle.MovePaddleUp, Source={StaticResource Controller}}" CommandParameter="{Binding RightPaddle, Source={StaticResource Controller}}" Key="Up"/>
+        <KeyBinding Command="{Binding LeftPaddle.MovePaddleDown, Source={StaticResource Controller}}" CommandParameter="{Binding LeftPaddle, Source={StaticResource Controller}}" Key="S"/>
+        <KeyBinding Command="{Binding RightPaddle.MovePaddleDown, Source={StaticResource Controller}}" CommandParameter="{Binding RightPaddle, Source={StaticResource Controller}}" Key="Down"/>
+    </Window.InputBindings>
+    <Canvas Width="{Binding PlayArea.Width, Source={StaticResource Controller}, Mode=OneWay}"
+            Height="{Binding PlayArea.Height, Source={StaticResource Controller}, Mode=OneWay}">
+        <Rectangle
+            x:Name="Background"
+            Width="{Binding PlayArea.Width, Source={StaticResource Controller}, Mode=OneWay}"
+            Height="{Binding PlayArea.Height, Source={StaticResource Controller}, Mode=OneWay}"
+            Stroke="Black"
+            StrokeThickness="{Binding PlayArea.BorderWidth, Source={StaticResource Controller}, Mode=OneWay}" />
+        <Line
+            x:Name="LeftPaddle"
+            X1="{Binding LeftPaddle.X, Source={StaticResource Controller}, Mode=OneWay}"
+            Y1="{Binding LeftPaddle.Y1, Source={StaticResource Controller}, Mode=TwoWay}"
+            X2="{Binding LeftPaddle.X, Source={StaticResource Controller}, Mode=OneWay}"
+            Y2="{Binding LeftPaddle.Y2, Source={StaticResource Controller}, Mode=OneWay}"
+            Stroke="Black"
+            StrokeThickness="{Binding LeftPaddle.Thickness, Source={StaticResource Controller}, Mode=OneWay}"/>
+        <Line
+            x:Name="RightPaddle"
+            X1="{Binding RightPaddle.X, Source={StaticResource Controller}, Mode=OneWay}"
+            Y1="{Binding RightPaddle.Y1, Source={StaticResource Controller}, Mode=OneWay}"
+            X2="{Binding RightPaddle.X, Source={StaticResource Controller}, Mode=OneWay}"
+            Y2="{Binding RightPaddle.Y2, Source={StaticResource Controller}, Mode=OneWay}"
+            Stroke="Black"
+            StrokeThickness="{Binding RightPaddle.Thickness, Source={StaticResource Controller}, Mode=OneWay}"/>
+        <Ellipse
+            x:Name="Ball"
+            Height="{Binding Ball.Diameter, Source={StaticResource Controller}, Mode=OneWay}" 
+            Width="{Binding Ball.Diameter, Source={StaticResource Controller}, Mode=OneWay}"
+            Fill="Black"
+            Canvas.Top="{Binding Ball.Y, Source={StaticResource Controller}, Mode=OneWay}"
+            Canvas.Left="{Binding Ball.X, Source={StaticResource Controller}, Mode=OneWay}"/>
+    </Canvas>
+</Window>

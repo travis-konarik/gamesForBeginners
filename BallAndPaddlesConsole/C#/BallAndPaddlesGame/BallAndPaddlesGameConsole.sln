@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallAndPaddlesGame", "BallAndPaddlesGame\BallAndPaddlesGame.csproj", "{6C3EA457-ACC7-49DB-B1B0-E0F57E78E8B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallAndPaddlesGameConsole", "BallAndPaddlesGame\BallAndPaddlesGameConsole.csproj", "{6C3EA457-ACC7-49DB-B1B0-E0F57E78E8B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
